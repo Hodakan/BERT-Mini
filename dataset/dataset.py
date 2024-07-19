@@ -14,8 +14,10 @@ class BERTDatase(Dataset):
         self.encoding = encoding
 
         with open(corpus_path, "r", encoding=encoding) as f:
-            self.lines = [line[:-1].split('\t')
-                          for line in tqdm.tqdm(f, desc="Loading Dataset")]
+            self.lines = []
+            for line in tqdm.tqdm(f, desc="Loading Dataset"):
+                line = line.split()
+                self.lines.append([line[:len(line)//2], line[len(line)//2:]])
             self.corpus_lines = len(self.lines)
 
     def __len__(self):
