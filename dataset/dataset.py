@@ -17,7 +17,8 @@ class BERTDatase(Dataset):
             self.lines = []
             for line in tqdm.tqdm(f, desc="Loading Dataset"):
                 line = line.split()
-                self.lines.append([line[:len(line)//2], line[len(line)//2:]])
+                t1, t2 = line[:len(line)//2], line[len(line)//2:]
+                self.lines.append([" ".join(t1), " ".join(t2)])
             self.corpus_lines = len(self.lines)
 
     def __len__(self):
