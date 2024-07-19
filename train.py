@@ -23,6 +23,7 @@ if __name__ == "__main__":
     parser.add_argument('-w', '--num_workers', type=int, default=4)
 
     parser.add_argument('--log_freq', type=int, default=100)
+    parser.add_argument('--corpus_lines', type=int, default=None)
 
     args = parser.parse_args()
 
@@ -34,7 +35,8 @@ if __name__ == "__main__":
     train_dataset = BERTDatase(
         corpus_path=args.train_dataset,
         vocab=vocab,
-        seq_len=args.seq_len
+        seq_len=args.seq_len,
+        corpus_lines=args.corpus_lines
     )
 
     print("Creating Dataloader")
