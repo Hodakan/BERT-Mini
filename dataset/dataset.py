@@ -7,7 +7,7 @@ import random
 
 class BERTDatase(Dataset):
 
-    def __init__(self, corpus_path, vocab: WordVocab, seq_len, encoding='utf-8'):
+    def __init__(self, corpus_path, vocab: WordVocab, seq_len, corpus_lines=None, encoding='utf-8'):
         self.vocab = vocab
         self.seq_len = seq_len
         self.corpus_path = corpus_path
@@ -19,6 +19,9 @@ class BERTDatase(Dataset):
                 line = line.split()
                 t1, t2 = line[:len(line)//2], line[len(line)//2:]
                 self.lines.append([" ".join(t1), " ".join(t2)])
+
+                if corpus_lines is not None and len(self.lines) >= corpus_lines:
+                    break
 
             self.corpus_lines = len(self.lines)
 
