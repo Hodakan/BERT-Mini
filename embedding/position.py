@@ -25,3 +25,7 @@ class PositionEmbedding(nn.Module):
 
     def forward(self, x):
         return self.encoding[:, :x.size(1)]
+
+    def to(self, device):
+        self.encoding = self.encoding.to(device)
+        return super(PositionEmbedding, self).to(device)
