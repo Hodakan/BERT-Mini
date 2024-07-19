@@ -36,6 +36,8 @@ class BERTTrainer:
             "cuda:0" if torch.cuda.is_available() else "cpu")
 
         self.bert = bert.to(self.device)
+        self.bert.embedding.position.encoding = self.bert.embedding.position.encoding.to(
+            self.device)
         self.model = BERTLM(bert, vocab_size).to(self.device)
 
         if torch.cuda.device_count() > 1:

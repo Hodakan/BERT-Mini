@@ -18,8 +18,6 @@ class BERTEmbedding(nn.Module):
         assert embed_size == self.token.embedding_dim, 'WRONG EMBEDDING SIZE'
 
     def forward(self, sequence, segment_label):
-        print(sequence.device, segment_label.device, self.token.device,
-              self.position.device, self.segment.device)
         x = self.token(sequence) + self.position(sequence) + \
             self.segment(segment_label)
         return self.dropout(x)

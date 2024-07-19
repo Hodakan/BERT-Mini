@@ -28,7 +28,7 @@ class MultiHeadAttention(nn.Module):
         if mask is not None:
             score = score.masked_fill(mask == 0, -10000)
 
-        score = nn.functional.softmax(score)
+        score = nn.functional.softmax(score, -1)
         out = score @ v
 
         # concat and pass to linear layer
