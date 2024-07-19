@@ -20,7 +20,7 @@ class BERTTrainer:
         train_dataloader: DataLoader, test_dataloader: DataLoader = None,
         lr: float = 1e-4, betas=(0.9, 0.999),
         weight_decay: float = 0.01, warmup_steps=10000,
-        log_freq: int = 10
+        log_freq: int = 100
     ):
         """
         :param bert: BERT model going to train

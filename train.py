@@ -22,6 +22,8 @@ if __name__ == "__main__":
     parser.add_argument('-e', '--epoch', type=int, default=1)
     parser.add_argument('-w', '--num_workers', type=int, default=4)
 
+    parser.add_argument('--log_freq', type=int, default=100)
+
     args = parser.parse_args()
 
     print("Loading Vocab")
@@ -52,6 +54,7 @@ if __name__ == "__main__":
         bert=bert,
         vocab_size=len(vocab),
         train_dataloader=train_data_loader,
+        log_freq=args.log_freq
     )
 
     print("Training Start")
