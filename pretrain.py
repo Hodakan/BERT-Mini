@@ -40,9 +40,9 @@ class BERTTrainer:
             self.device)
         self.model = BERTLM(bert, vocab_size).to(self.device)
 
-        if torch.cuda.device_count() > 1:
-            print("Using %d GPUS for BERT" % torch.cuda.device_count())
-            self.model = nn.DataParallel(self.model)
+        # if torch.cuda.device_count() > 1:
+        #     print("Using %d GPUS for BERT" % torch.cuda.device_count())
+        #     self.model = nn.DataParallel(self.model)
 
         self.train_data = train_dataloader
         self.test_data = test_dataloader

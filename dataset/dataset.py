@@ -19,8 +19,8 @@ class BERTDatase(Dataset):
                 line = line.split()
                 t1, t2 = line[:len(line)//2], line[len(line)//2:]
                 self.lines.append([" ".join(t1), " ".join(t2)])
-                if len(self.lines) >= 10000:
-                    break
+                # if len(self.lines) >= 10000:
+                #     break
             self.corpus_lines = len(self.lines)
 
     def __len__(self):
