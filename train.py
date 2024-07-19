@@ -19,7 +19,7 @@ if __name__ == "__main__":
     )
 
     print("Creating Dataloader")
-    train_data_loader = DataLoader(train_dataset, batch_size=32, num_workers=6)
+    train_data_loader = DataLoader(train_dataset, batch_size=16, num_workers=4)
 
     print("Building BERT model")
     bert = BERTMini(
