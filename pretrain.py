@@ -32,10 +32,15 @@ class BERTTrainer:
         :param weight_decay: Adam optimizer weight decat param
         :param log_freq: logging frequency of the batch iteration
         """
-        self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
+        self.device = torch.device(
+            "cuda:0" if torch.cuda.is_available() else "cpu")
 
         self.bert = bert
         self.model = BERTLM(bert, vocab_size).to(self.device)
+
+        if torch.cuda.device_count() > 1:
+            print("Using %d GPUS for BERT" % torch.cuda.device_count())
+            self.model = nn.DataParallel(self.model)
 
         self.train_data = train_dataloader
         self.test_data = test_dataloader
