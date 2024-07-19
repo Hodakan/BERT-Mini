@@ -22,7 +22,10 @@ class PositionEmbedding(nn.Module):
         self.encoding[:, 1::2] = torch.cos(pos * div_term)
 
         self.encoding = nn.Parameter(self.encoding.unsqueeze(0))
-        # self.encoding = self.encoding.unsqueeze(0)
 
     def forward(self, x):
         return self.encoding[:, :x.size(1)]
+
+    def to(self, device):
+        self.encoding = self.encoding.to(device)
+        return super(PositionEmbedding, self).to(device)
