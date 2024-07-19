@@ -33,7 +33,7 @@ class BERTTrainer:
         :param log_freq: logging frequency of the batch iteration
         """
         self.device = torch.device(
-            "cuda:0" if torch.cuda.is_available() else "cpu")
+            "cuda" if torch.cuda.is_available() else "cpu")
 
         self.bert = bert
         self.model = BERTLM(bert, vocab_size)
