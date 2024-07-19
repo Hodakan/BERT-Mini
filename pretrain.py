@@ -40,8 +40,8 @@ class BERTTrainer:
 
         self.model = nn.DataParallel(self.model)
         self.model.to(self.device)
-        self.bert.embedding.position.encoding = self.bert.embedding.position.encoding.to(
-            self.device)
+        # self.bert.embedding.position.encoding = self.bert.embedding.position.encoding.to(
+        #     self.device)
 
         self.train_data = train_dataloader
         self.test_data = test_dataloader
