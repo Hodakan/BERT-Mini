@@ -77,8 +77,7 @@ class BERTTrainer:
         total_element = 0
 
         for i, data in data_iter:
-            device = self.model.weight.device
-            data = {key: value.to(device) for key, value in data.items()}
+            data = {key: value.to(self.device) for key, value in data.items()}
 
             next_sent_output, mask_lm_output = self.model.forward(
                 data['bert_input'], data['segment_label'])
