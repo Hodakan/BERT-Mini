@@ -16,7 +16,9 @@ class BERTDatase(Dataset):
         with open(corpus_path, "r", encoding=encoding) as f:
             self.lines = []
             for line in tqdm.tqdm(f, desc="Loading Dataset"):
-                line = line.split()[:seq_len]
+                line = line.split()
+                if len(line) > seq_len:
+                    continue
                 t1, t2 = line[:len(line)//2], line[len(line)//2:]
                 self.lines.append([" ".join(t1), " ".join(t2)])
 
